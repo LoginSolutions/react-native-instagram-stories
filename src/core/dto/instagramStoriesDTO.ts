@@ -1,17 +1,18 @@
-import { ReactNode } from 'react';
-import { ScrollViewProps, TextStyle, ViewStyle } from 'react-native';
+import { ReactNode } from "react";
+import { ScrollViewProps, TextStyle, ViewStyle } from "react-native";
 
 export interface StoryItemProps {
   id: string;
   sourceUrl: string;
-  mediaType?: 'image' | 'video';
+  mediaType?: "image" | "video";
   renderContent?: () => ReactNode;
 }
 
 export interface InstagramStoryProps {
   id: string;
-  imgUrl?: string;
+  image?: string;
   name?: string;
+  position?: string;
   stories: StoryItemProps[];
 }
 
@@ -22,7 +23,8 @@ export interface InstagramStoriesProps {
   avatarSeenBorderColors?: string[];
   avatarSize?: number;
   storyAvatarSize?: number;
-  listContainerStyle?: ScrollViewProps['contentContainerStyle'];
+  avatarStyle?: ViewStyle | ViewStyle[];
+  listContainerStyle?: ScrollViewProps["contentContainerStyle"];
   listContainerProps?: ScrollViewProps;
   containerStyle?: ViewStyle;
   textStyle?: TextStyle;
@@ -33,15 +35,19 @@ export interface InstagramStoriesProps {
   nameTextStyle?: TextStyle;
   videoProps?: any;
   closeIconColor?: string;
-  onShow?: ( id: string ) => void;
-  onHide?: ( id: string ) => void;
+  onShow?: (id: string) => void;
+  onHide?: (id: string) => void;
 }
 
 export type InstagramStoriesPublicMethods = {
-  spliceStories: ( stories: InstagramStoryProps[], index?: number ) => void;
-  spliceUserStories: ( stories: StoryItemProps[], user: string, index?: number ) => void;
-  setStories: ( stories: InstagramStoryProps[] ) => void;
+  spliceStories: (stories: InstagramStoryProps[], index?: number) => void;
+  spliceUserStories: (
+    stories: StoryItemProps[],
+    user: string,
+    index?: number
+  ) => void;
+  setStories: (stories: InstagramStoryProps[]) => void;
   clearProgressStorage: () => void;
   hide: () => void;
-  show: ( id?: string ) => void;
+  show: (id?: string) => void;
 };

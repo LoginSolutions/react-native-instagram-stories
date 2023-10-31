@@ -1,24 +1,24 @@
-import { StyleSheet } from 'react-native';
-import { PROGRESS_COLOR } from '../../core/constants';
+import { StyleSheet } from "react-native";
+import { PROGRESS_COLOR } from "../../core/constants";
 
-export default StyleSheet.create( {
+export default StyleSheet.create({
   container: {
-    position: 'absolute',
+    position: "absolute",
     top: 16,
     left: 16,
     height: 2,
-    flexDirection: 'row',
+    flexDirection: "row",
     gap: 4,
   },
   item: {
     height: 3,
     borderRadius: 8,
-    overflow: 'hidden',
+    overflow: "hidden",
   },
   itemActive: {
-    backgroundColor: '#FFF',
+    backgroundColor: "#FFF",
   },
   itemInactive: {
     backgroundColor: PROGRESS_COLOR,
   },
-} );
+});
