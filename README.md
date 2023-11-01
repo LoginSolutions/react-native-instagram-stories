@@ -49,23 +49,24 @@ If you use video in your stories, please make sure you have `react-native-video`
 To use the `InstagramStories` component, you need to import it in your React Native application and include it in your JSX code. Here's an example of how to use it:
 
 ```jsx
-import React from 'react';
-import { View } from 'react-native';
-import InstagramStories from '@birdwingo/react-native-instagram-stories';
+import React from "react";
+import { View } from "react-native";
+import InstagramStories from "@birdwingo/react-native-instagram-stories";
 
 const YourComponent = () => {
-  
-  const stories = [{
-    id: 'user1',
-    name: 'User 1',
-    imgUrl: 'user1-profile-image-url',
-    stories: [
-      { id: 'story1', sourceUrl: 'story1-image-url' },
-      { id: 'story2', sourceUrl: 'story1-video-url', mediaType: 'video' },
-      // ...
-    ]}, // ...
+  const stories = [
+    {
+      id: "user1",
+      name: "User 1",
+      imgUrl: "user1-profile-image-url",
+      stories: [
+        { id: "story1", sourceUrl: "story1-image-url" },
+        { id: "story2", sourceUrl: "story1-video-url", mediaType: "video" },
+        // ...
+      ],
+    }, // ...
   ];
-  
+
   return (
     <View>
       <InstagramStories
@@ -81,64 +82,67 @@ export default YourComponent;
 
 ## Props
 
- Name                       | Type                                         | Default value                              | Description       
-----------------------------|----------------------------------------------|--------------------------------------------|---------------------
- `stories`                  | [InstagramStoryProps](#instagramstoryprops)[]| **required**                               | An array of stories.
- `saveProgress`             | boolean                                      | false                                      | A boolean indicating whether to save and track the progress of seen stories.
- `avatarBorderColors`       | string[]                                     | [DEFAULT_COLORS](#default-gradient-colors) | An array of string colors representing the border colors of story avatars.
- `avatarSeenBorderColors`   | string[]                                     | [ '#2A2A2C' ]                              | An array of string colors representing the border colors of seen story avatars.
- `avatarSize`               | number                                       | 60                                         | The size of the story avatars.
- `storyAvatarSize`          | number                                       | 25                                         | The size of the avatars shown in the header of each story.
- `listContainerStyle`       | ScrollViewProps['contentContainerStyle']     |                                            | Additional styles for the list container.
- `listContainerProps`       | ScrollViewProps                              |                                            | Props to be passed to the underlying ScrollView component.
- `containerStyle`           | ViewStyle                                    |                                            | Additional styles for the story container.
- `textStyle`                | TextStyle                                    |                                            | Additional styles for text elements.
- `animationDuration`        | number                                       | 10000                                      | The duration of the story animations in ms.
- `videoAnimationMaxDuration`| number                                       |                                            | The max duration of the video story animations in ms. If is this property not provided, the whole video will be played.
- `backgroundColor`          | string                                       | '#000000'                                  | The background color of story container.
- `showName`                 | boolean                                      | false                                      | Whether you want to show user name under avatar in avatar list.
- `nameTextStyle`            | TextStyle                                    |                                            | Additional styles for name text elements.
- `videoProps`               | [react-native-video](https://www.npmjs.com/package/react-native-video?activeTab=readme#configurable-props)| | Additional props for video component. For more information, follow `react-native-video`.
- `closeIconColor`           | string                                       | '#00000099'                                | The color of story close icon.
- `onShow`                   | ( id: string ) => void                       |                                            | Callback when a story is shown.
- `onHide`                   | ( id: string ) => void                       |                                            | Callback when a story is hidden.
+| Name                        | Type                                                                                                       | Default value                              | Description                                                                                                             |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------- | ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
+| `stories`                   | [InstagramStoryProps](#instagramstoryprops)[]                                                              | **required**                               | An array of stories.                                                                                                    |
+| `saveProgress`              | boolean                                                                                                    | false                                      | A boolean indicating whether to save and track the progress of seen stories.                                            |
+| `avatarBorderColors`        | string[]                                                                                                   | [DEFAULT_COLORS](#default-gradient-colors) | An array of string colors representing the border colors of story avatars.                                              |
+| `avatarSeenBorderColors`    | string[]                                                                                                   | [ '#2A2A2C' ]                              | An array of string colors representing the border colors of seen story avatars.                                         |
+| `avatarSize`                | number                                                                                                     | 60                                         | The size of the story avatars.                                                                                          |
+| `avatarStyle`               | ViewStyle / ViewStyle[]                                                                                    |                                            | The ViewStyleing of the Avatar Component.                                                                               |
+| `storyAvatarSize`           | number                                                                                                     | 25                                         | The size of the avatars shown in the header of each story.                                                              |
+| `listContainerStyle`        | ScrollViewProps['contentContainerStyle']                                                                   |                                            | Additional styles for the list container.                                                                               |
+| `listContainerProps`        | ScrollViewProps                                                                                            |                                            | Props to be passed to the underlying ScrollView component.                                                              |
+| `containerStyle`            | ViewStyle                                                                                                  |                                            | Additional styles for the story container.                                                                              |
+| `textStyle`                 | TextStyle                                                                                                  |                                            | Additional styles for text elements.                                                                                    |
+| `progressDuration`          | number                                                                                                     | 10000                                      | The duration of the story animations in ms.                                                                             |
+| `animationConfig`           | object                                                                                                     | {duration: 800}                            | The configuration of react-native-reanimated withTiming - config.                                                       |
+| `videoAnimationMaxDuration` | number                                                                                                     |                                            | The max duration of the video story animations in ms. If is this property not provided, the whole video will be played. |
+| `backgroundColor`           | string                                                                                                     | '#000000'                                  | The background color of story container.                                                                                |
+| `showName`                  | boolean                                                                                                    | false                                      | Whether you want to show user name under avatar in avatar list.                                                         |
+| `nameTextStyle`             | TextStyle                                                                                                  |                                            | Additional styles for name text elements.                                                                               |
+| `videoProps`                | [react-native-video](https://www.npmjs.com/package/react-native-video?activeTab=readme#configurable-props) |                                            | Additional props for video component. For more information, follow `react-native-video`.                                |
+| `closeIconColor`            | string                                                                                                     | '#00000099'                                | The color of story close icon.                                                                                          |
+| `onShow`                    | ( id: string ) => void                                                                                     |                                            | Callback when a story is shown.                                                                                         |
+| `onHide`                    | ( id: string ) => void                                                                                     |                                            | Callback when a story is hidden.                                                                                        |
 
 ## Public Methods
 
- Name                  | Type                                                                                             | Description
----------------------- |--------------------------------------------------------------------------------------------------|---------------------------
- `spliceStories`       | ( stories: [InstagramStoryProps](#instagramstoryprops)[], index?: number ) => void               | Insert new stories at a specific index. If you don't provide `index` property, stories will be pushed to the end of array.
- `spliceUserStories`   | ( stories: [InstagramStoryProps](#instagramstoryprops)[], user: string, index?: number ) => void | Insert new stories for a specific user at a specific index. If you don't provide `index` property, stories will be pushed to the end of array
- `setStories`          | ( stories: [InstagramStoryProps](#instagramstoryprops)[] ) => void                               | Replace the current stories with a new set of stories.
- `clearProgressStorage`| () => void                                                                                       | Clear the progress storage for seen stories.
- `hide`                | () => void                                                                                       | Hide stories if currently visible
- `show`                | ( id?: string ) => void                                                                          | Show stories modal with provided story `id`. If `id` is not provided, will be shown first story
+| Name                   | Type                                                                                             | Description                                                                                                                                   |
+| ---------------------- | ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `spliceStories`        | ( stories: [InstagramStoryProps](#instagramstoryprops)[], index?: number ) => void               | Insert new stories at a specific index. If you don't provide `index` property, stories will be pushed to the end of array.                    |
+| `spliceUserStories`    | ( stories: [InstagramStoryProps](#instagramstoryprops)[], user: string, index?: number ) => void | Insert new stories for a specific user at a specific index. If you don't provide `index` property, stories will be pushed to the end of array |
+| `setStories`           | ( stories: [InstagramStoryProps](#instagramstoryprops)[] ) => void                               | Replace the current stories with a new set of stories.                                                                                        |
+| `clearProgressStorage` | () => void                                                                                       | Clear the progress storage for seen stories.                                                                                                  |
+| `hide`                 | () => void                                                                                       | Hide stories if currently visible                                                                                                             |
+| `show`                 | ( id?: string ) => void                                                                          | Show stories modal with provided story `id`. If `id` is not provided, will be shown first story                                               |
 
 ## Types
 
 ### InstagramStoryProps
 
- Parameter             | Type                                   | Required
------------------------|----------------------------------------|----------------
- `id`                  | string                                 | true
- `imgUrl`              | string                                 | false
- `name`                | string                                 | false
- `stories`             | [StoryItemProps](#storyitemprops)[]    | true
+| Parameter | Type                                | Required |
+| --------- | ----------------------------------- | -------- |
+| `id`      | string                              | true     |
+| `imgUrl`  | string                              | false    |
+| `name`    | string                              | false    |
+| `stories` | [StoryItemProps](#storyitemprops)[] | true     |
 
 **Please note that id parameter must be unique for every user**
 
 ### StoryItemProps
 
- Parameter             | Type                                     | Required
------------------------|------------------------------------------|-------------------
- `id`                  | string                                   | true
- `sourceUrl`           | string                                   | true
- `mediaType`           | 'video' \| 'image' (default: `'image'`)  | false
- `renderContent`       | () => ReactNode                          | false
+| Parameter       | Type                                    | Required |
+| --------------- | --------------------------------------- | -------- |
+| `id`            | string                                  | true     |
+| `sourceUrl`     | string                                  | true     |
+| `mediaType`     | 'video' \| 'image' (default: `'image'`) | false    |
+| `renderContent` | () => ReactNode                         | false    |
 
 **Please note that id parameter must be unique for every story**
 
 ### Default Gradient Colors
+
 Default colors for avatar gradient are the same as on Instagram - `[ '#F7B801', '#F18701', '#F35B04', '#F5301E', '#C81D4E', '#8F1D4E' ]`
 
 ## Sponsor

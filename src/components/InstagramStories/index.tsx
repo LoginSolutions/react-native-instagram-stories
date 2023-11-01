@@ -20,7 +20,8 @@ import {
 } from "../../core/dto/instagramStoriesDTO";
 import { ProgressStorageProps } from "../../core/dto/helpersDTO";
 import {
-  ANIMATION_DURATION,
+  ANIMATION_CONFIG,
+  PROGRESS_DURATION,
   DEFAULT_COLORS,
   SEEN_LOADER_COLORS,
   STORY_AVATAR_SIZE,
@@ -45,7 +46,8 @@ const InstagramStories = forwardRef<
       storyAvatarSize = STORY_AVATAR_SIZE,
       listContainerStyle,
       listContainerProps,
-      animationDuration = ANIMATION_DURATION,
+      animationConfig = ANIMATION_CONFIG,
+      progressDuration = PROGRESS_DURATION,
       backgroundColor = BACKGROUND_COLOR,
       showName = false,
       nameTextStyle,
@@ -222,9 +224,10 @@ const InstagramStories = forwardRef<
           ref={modalRef}
           stories={data}
           seenStories={seenStories}
-          duration={animationDuration}
+          duration={progressDuration}
           storyAvatarSize={storyAvatarSize}
           onLoad={onLoad}
+          animationConfig={animationConfig}
           onSeenStoriesChange={onSeenStoriesChange}
           backgroundColor={backgroundColor}
           videoDuration={videoAnimationMaxDuration}

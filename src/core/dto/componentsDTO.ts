@@ -31,6 +31,7 @@ export interface StoryModalProps {
   containerStyle?: ViewStyle;
   backgroundColor?: string;
   videoProps?: any;
+  animationConfig: object;
   closeIconColor: string;
   onLoad: () => void;
   onShow?: (id: string) => void;
