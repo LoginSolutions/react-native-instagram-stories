@@ -57,7 +57,7 @@ const StoryList: FC<StoryListProps> = ({
   return (
     <StoryAnimation x={x} index={index}>
       <SafeAreaView>
-        <StatusBar barStyle={"light-content"} />
+        <StatusBar barStyle={"light-content"} backgroundColor={"#191919"} />
 
         <Animated.View style={[animatedStyles, ListStyles.container]}>
           <StoryImage
