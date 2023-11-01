@@ -1,4 +1,4 @@
-import { Image, View } from "react-native";
+import { Image, Platform, View } from "react-native";
 import React, { FC, memo, useState } from "react";
 import {
   runOnJS,
@@ -95,7 +95,7 @@ const StoryImage: FC<StoryImageProps> = ({
               style={{
                 width: WIDTH,
                 aspectRatio: 0.5626,
-                height: HEIGHT - 90,
+                height: Platform.OS === "ios" ? HEIGHT - 90 : HEIGHT,
               }}
               resizeMode='cover'
               testID='storyImageComponent'
