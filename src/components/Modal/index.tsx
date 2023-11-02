@@ -39,6 +39,7 @@ const StoryModal = forwardRef<StoryModalPublicMethods, StoryModalProps>(
       containerStyle,
       backgroundColor,
       videoProps,
+      videoPlayer,
       animationConfig,
       closeIconColor,
       onLoad,
@@ -282,6 +283,7 @@ const StoryModal = forwardRef<StoryModalPublicMethods, StoryModalProps>(
                   buttonHandled={buttonHandled}
                   paused={paused}
                   videoProps={videoProps}
+                  videoPlayer={videoPlayer}
                   closeColor={closeIconColor}
                   key={story.id}
                 />

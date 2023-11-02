@@ -35,6 +35,7 @@ export interface InstagramStoriesProps {
   showName?: boolean;
   nameTextStyle?: TextStyle;
   videoProps?: any;
+  videoPlayer?: "expo" | "react-native-video";
   closeIconColor?: string;
   onShow?: (id: string) => void;
   onHide?: (id: string) => void;

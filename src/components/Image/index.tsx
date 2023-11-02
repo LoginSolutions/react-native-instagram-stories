@@ -1,5 +1,5 @@
 import { Image, Platform, View } from "react-native";
-import React, { FC, memo, useState } from "react";
+import React, { FC, ReactComponentElement, memo, useState } from "react";
 import {
   runOnJS,
   useAnimatedReaction,
@@ -10,7 +10,7 @@ import { StoryImageProps } from "../../core/dto/componentsDTO";
 import Loader from "../Loader";
 import { HEIGHT, LOADER_COLORS, WIDTH } from "../../core/constants";
 import ImageStyles from "./Image.styles";
-import StoryVideo from "./video";
+// import StoryVideo from "./video";
 
 const StoryImage: FC<StoryImageProps> = ({
   stories,
@@ -21,6 +21,7 @@ const StoryImage: FC<StoryImageProps> = ({
   videoProps,
   isActive,
   closeColor,
+  videoPlayer = "react-native-video",
   onImageLayout,
   onLoad,
 }) => {
@@ -28,6 +29,18 @@ const StoryImage: FC<StoryImageProps> = ({
     uri: defaultImage,
     isVideo: isDefaultVideo,
   });
+
+  let StoryVideo: any;
+
+  if (videoPlayer === "expo") {
+    import("./expo-video").then((module) => {
+      StoryVideo = module.default;
+    });
+  } else {
+    import("./video").then((module) => {
+      StoryVideo = module.default;
+    });
+  }
 
   const loading = useSharedValue(true);
   const color = useSharedValue(LOADER_COLORS);

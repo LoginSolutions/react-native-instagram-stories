@@ -26,6 +26,7 @@ const StoryList: FC<StoryListProps> = ({
   paused,
   onLoad,
   videoProps,
+  videoPlayer,
   closeColor,
   ...props
 }) => {
@@ -75,6 +76,7 @@ const StoryList: FC<StoryListProps> = ({
             paused={paused}
             isActive={isActive}
             videoProps={videoProps}
+            videoPlayer={videoPlayer}
             closeColor={closeColor}
           />
           <Progress
