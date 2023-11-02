@@ -1,5 +1,5 @@
 import { Image, Platform, View } from "react-native";
-import React, { FC, ReactComponentElement, memo, useState } from "react";
+import React, { FC, memo, useState, lazy } from "react";
 import {
   runOnJS,
   useAnimatedReaction,
@@ -30,17 +30,10 @@ const StoryImage: FC<StoryImageProps> = ({
     isVideo: isDefaultVideo,
   });
 
-  let StoryVideo: any;
-
-  if (videoPlayer === "expo") {
-    import("./expo-video").then((module) => {
-      StoryVideo = module.default;
-    });
-  } else {
-    import("./video").then((module) => {
-      StoryVideo = module.default;
-    });
-  }
+  const StoryVideo =
+    videoPlayer === "expo"
+      ? lazy(() => import("./expo-video"))
+      : lazy(() => import("./video"));
 
   const loading = useSharedValue(true);
   const color = useSharedValue(LOADER_COLORS);
