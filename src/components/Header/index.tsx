@@ -24,12 +24,10 @@ const StoryHeader: FC<StoryHeaderProps> = ({
   return (
     <View style={[HeaderStyles.container, { width }]}>
       <View style={HeaderStyles.left}>
-        {Boolean(image) && (
+        {image && (
           <View
-            style={[
-              HeaderStyles.avatar,
-              { borderRadius: styles.borderRadius },
-            ]}>
+            style={[HeaderStyles.avatar, { borderRadius: styles.borderRadius }]}
+          >
             <Image source={{ uri: image }} style={styles} />
           </View>
         )}
@@ -38,10 +36,11 @@ const StoryHeader: FC<StoryHeaderProps> = ({
       <TouchableOpacity
         onPress={onClose}
         hitSlop={16}
-        testID='storyCloseButton'
+        testID="storyCloseButton"
         onPressIn={() => {
           buttonHandled.value = true;
-        }}>
+        }}
+      >
         <Close color={closeColor} />
       </TouchableOpacity>
     </View>
