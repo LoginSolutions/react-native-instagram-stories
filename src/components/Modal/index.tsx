@@ -70,12 +70,12 @@ const StoryModal = forwardRef<StoryModalPublicMethods, StoryModalProps>(
       () => stories[userIndex.value - 1]?.id
     );
     const nextUserId = useDerivedValue(() => stories[userIndex.value + 1]?.id);
-    const previousStory = useDerivedValue(
-      () => stories[userIndex.value]?.stories[storyIndex.value - 1]?.id
-    );
-    const nextStory = useDerivedValue(
-      () => stories[userIndex.value]?.stories[storyIndex.value + 1]?.id
-    );
+    const previousStory = useDerivedValue( () => ( storyIndex.value !== undefined
+      ? stories[userIndex.value]?.stories[storyIndex.value - 1]?.id
+      : undefined ) );
+    const nextStory = useDerivedValue( () => ( storyIndex.value !== undefined
+      ? stories[userIndex.value]?.stories[storyIndex.value + 1]?.id
+      : undefined ) );
 
     const animatedStyles = useAnimatedStyle(() => ({ top: y.value }));
     const backgroundAnimatedStyles = useAnimatedStyle(() => ({
@@ -110,8 +110,13 @@ const StoryModal = forwardRef<StoryModalPublicMethods, StoryModalProps>(
         newDuration -= animation.value * newDuration;
       } else {
         animation.value = 0;
+  
+      if ( userId.value !== undefined && currentStory.value !== undefined ) {
+
         runOnJS(onSeenStoriesChange)(userId.value, currentStory.value);
-      }
+        }
+
+    }
 
       animation.value = withTiming(1, { duration: newDuration });
     };
@@ -128,7 +133,8 @@ const StoryModal = forwardRef<StoryModalPublicMethods, StoryModalProps>(
       );
       const userStories = stories[newUserIndex]?.stories;
       currentStory.value =
-        userStories[newStoryIndex + 1]?.id ?? userStories[0]?.id;
+        newStoryIndex !== undefined
+      ? userStories?.[newStoryIndex + 1]?.id ?? userStories?.[0]?.id : undefined;
     };
 
     const toNextStory = (value = true) => {
@@ -213,8 +219,12 @@ const StoryModal = forwardRef<StoryModalPublicMethods, StoryModalProps>(
           }
 
           const newUserId = stories[Math.round(newX / WIDTH)]?.id;
+          if ( newUserId !== undefined ) {
+
           scrollTo(newUserId);
-        } else if (ctx.pressedAt + LONG_PRESS_DURATION < Date.now()) {
+          }
+
+      } else if (ctx.pressedAt + LONG_PRESS_DURATION < Date.now()) {
           startAnimation(true);
         } else if (ctx.pressedX < WIDTH / 2) {
           toPreviousStory();
@@ -233,11 +243,15 @@ const StoryModal = forwardRef<StoryModalPublicMethods, StoryModalProps>(
 
     useEffect(() => {
       if (visible) {
-        onShow?.(currentStory.value);
-        onLoad?.();
+
+      if ( currentStory.value !== undefined ) {
+          onShow?.(currentStory.value);
+  
+      }
+      onLoad?.();
 
         y.value = withTiming(0, animationConfig);
-      } else {
+      } else if ( currentStory.value !== undefined ) {
         onHide?.(currentStory.value);
       }
     }, [visible]);
