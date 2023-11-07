@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { ScrollViewProps, TextStyle, ViewStyle } from "react-native";
+import { WithTimingConfig } from "react-native-reanimated";
 
 export interface StoryItemProps {
   id: string;
@@ -10,7 +11,7 @@ export interface StoryItemProps {
 
 export interface InstagramStoryProps {
   id: string;
-  image?: string;
+  image?: string | null;
   name?: string;
   position?: string;
   stories: StoryItemProps[];
@@ -28,7 +29,7 @@ export interface InstagramStoriesProps {
   listContainerProps?: ScrollViewProps;
   containerStyle?: ViewStyle;
   textStyle?: TextStyle;
-  animationConfig?: object;
+  animationConfig?: WithTimingConfig;
   progressDuration?: number;
   videoAnimationMaxDuration?: number;
   backgroundColor?: string;

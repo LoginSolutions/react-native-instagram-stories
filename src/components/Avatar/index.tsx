@@ -75,7 +75,7 @@ const StoryAvatar: FC<StoryAvatarProps> = ({
               AvatarStyle,
             ]}>
             <Image
-              source={{ uri: image }}
+              source={{ uri: image ?? undefined }}
               style={{
                 height: "100%",
                 width: "100%",

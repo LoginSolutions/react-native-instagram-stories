@@ -1,4 +1,4 @@
-import { SharedValue } from "react-native-reanimated";
+import { SharedValue, WithTimingConfig } from "react-native-reanimated";
 import { TextStyle, ViewStyle } from "react-native";
 import { InstagramStoryProps } from "./instagramStoriesDTO";
 import { ProgressStorageProps } from "./helpersDTO";
@@ -32,7 +32,7 @@ export interface StoryModalProps {
   backgroundColor?: string;
   videoProps?: any;
   videoPlayer?: "expo" | "react-native-video";
-  animationConfig: object;
+  animationConfig: WithTimingConfig;
   closeIconColor: string;
   onLoad: () => void;
   onShow?: (id: string) => void;
@@ -87,7 +87,7 @@ export interface StoryProgressItemProps
 }
 
 export interface StoryHeaderProps {
-  image?: string;
+  image?: string | null;
   name?: string;
   avatarSize: number;
   textStyle?: TextStyle;

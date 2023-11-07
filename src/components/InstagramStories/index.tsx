@@ -200,25 +200,23 @@ const InstagramStories = forwardRef<
           showsHorizontalScrollIndicator={false}
           {...listContainerProps}
           contentContainerStyle={listContainerStyle}
-          testID='storiesList'>
-          {data.map(
-            (story) =>
-              story.image && (
-                <StoryAvatar
-                  {...story}
-                  loadingStory={loadingStory}
-                  seenStories={seenStories}
-                  onPress={() => onPress(story.id)}
-                  colors={avatarBorderColors}
-                  seenColors={avatarSeenBorderColors}
-                  size={avatarSize}
-                  showName={showName}
-                  nameTextStyle={nameTextStyle}
-                  key={`avatar${story.id}`}
-                  AvatarStyle={avatarStyle}
-                />
-              )
-          )}
+          testID="storiesList"
+        >
+          {data.map((story) => (
+            <StoryAvatar
+              {...story}
+              loadingStory={loadingStory}
+              seenStories={seenStories}
+              onPress={() => onPress(story.id)}
+              colors={avatarBorderColors}
+              seenColors={avatarSeenBorderColors}
+              size={avatarSize}
+              showName={showName}
+              nameTextStyle={nameTextStyle}
+              key={`avatar${story.id}`}
+              AvatarStyle={avatarStyle}
+            />
+          ))}
         </ScrollView>
         <StoryModal
           ref={modalRef}
